@@ -1,0 +1,43 @@
+{
+  "name": "Python Testing Environment",
+  "image": "mcr.microsoft.com/devcontainers/python:latest",
+  "postCreateCommand": "./devcontainer/setup.sh && ./devcontainer/test-case-watcher.sh",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+  "containerEnv": {
+    "PYTHONUNBUFFERED": "1",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "mounts": [
+    "source=${localWorkspaceFolder}/.cache,target=/workspace/.cache,type=volume"
+  ],
+  "overrideCommand": false,
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "python.pythonPath": "/usr/local/bin/python",
+        "editor.formatOnSave": true,
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "python.testing.pytestArgs": [
+          "tests",
+          "-n",
+          "auto"
+        ],
+        "python.testing.pytestEnabled": true,
+        "python.testing.unittestEnabled": false,
+        "python.testing.nosetestsEnabled": false
+      },
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-azuretools.vscode-docker",
+        "ms-vscode-remote.remote-containers",
+        "mhutchie.git-graph",
+        "eamodio.gitlens",
+        "dbaeumer.vscode-eslint"
+      ]
+    }
+  }
+}
